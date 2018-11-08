@@ -4,4 +4,4 @@
 ## 暂时计划包括
 ### HTML&CSS
 ### JavaScript
-### Jqury
+### jQuery
