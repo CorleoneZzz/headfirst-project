@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>名画</title>
+   <style>
+       div
+       {
+           display: inline-block;
+           margin-left: 20px;
+           border: 1px solid black;
+       }
+       img
+       {
+           width: 300px;
+           height: 300px;
+       }
+   </style>
+</head>
+<body>
+<!--<div id="two"><img src="image/twoblur.jpg"></div>-->
+<!--<div id="three"><img src="image/threeblur.jpg"></div>-->
+<!--<div id="four"><img src="image/fourblur.jpg"></div>-->
+<!--<div id="five"><img src="image/fiveblur.jpg"></div>-->
+<img id="zero" src="zeroblur.jpg">
+<img id="one" src="oneblur.jpg">
+<img id="two" src="twoblur.jpg">
+<img id="three" src="threeblur.jpg">
+<img id="four" src="fourblur.jpg">
+<img id="five" src="fiveblur.jpg">
+<script>
+ //    window.onload=init();
+ //    function init() {
+ //        var piclist=document.getElementsByTagName("div");
+ //        for(var i=0;i<piclist.length;i++)
+ //        {
+ //            piclist[i].onclick=pictureNew;
+ //        }
+ //    }
+ // function pictureNew(eventObj) {
+ //    var divContent=eventObj.target;
+ //     console.log(divContent);
+ //    var name=divContent.id;
+ //    name=name+".jpg";
+ //    console.log(name);
+ //     divContent.imgsrc=name;
+ //     console.log( divContent.imgsrc);//不能取到div里的img
+ // }
+    window.onload=init;
+    function init() {
+        var imgList=document.getElementsByTagName("img");
+        for (var i=0;i<imgList.length;i++)
+        {
+            imgList[i].onclick=showAnswer;
+            // imgList[i].onmouseover=showAnswer;
+        }
+    }
+    function showAnswer(e) {
+        var images=e.target;
+        var name=images.id;
+        name=name+".jpg";
+        images.src=name;
+        setTimeout(restore,2000,images);
+        console.log(images);
+    }
+    function restore(images) {
+        var name=images.id;//id永远是不变的，name得重新传
+        name=name+"blur.jpg";
+        images.src=name;
+        console.log(images);
+    }
+</script>
+</body>
+</html>
