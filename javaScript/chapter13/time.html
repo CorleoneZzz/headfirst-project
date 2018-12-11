@@ -1,0 +1,103 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div class="content"></div>
+</body>
+<script type="text/javascript">
+function checkTime(i){
+    if(i<10){
+
+        i = '0'+i;
+    }
+    return i;
+}
+function showTime(){
+    var obj = new Date();
+    var year = obj.getFullYear();
+    var month = obj.getMonth()+1;
+    var dates = obj.getDate();
+    var day = obj.getDay();
+    var minutes = obj.getMinutes();
+    var seconds= obj.getSeconds();
+    
+    var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+    m = checkTime(minutes);  //之所以这样赋值，是因为当小于10上，会出现01、02等
+    s = checkTime(seconds);
+    
+    getEle('.content').innerHTML = year+'年'+month+"月"+dates+'日'+week[day]+m+'分'+s+"秒";
+    setTimeout(showTime,1000);
+}
+function getEle(name){
+    return document.querySelector(name)
+}
+
+    
+    showTime()
+    
+    
+// console.log(obj.yearMonthDay())
+    setTimeout(showTime,500);
+</script>
+</html>
+ -->
+     <!doctype html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>实时更新时间</title>
+    <script type="text/javascript">
+
+    var date_start;
+    var i=0;
+    function start(){
+    date_start=new Date();  //开始时间
+     start_time();
+        }
+    function start_time(){
+    	
+    	set= window.setTimeout("start_time()", 1000);
+            var date_end= new Date(); //结束时间
+            var date_sum = date_end.getTime() - date_start.getTime(); //结束时间-开始时间
+            //天数
+            var days=Math.floor(date_sum/(24*60*60*1000))
+            //小时数
+            var day_ms=date_sum%(24*60*60*1000)    //计算天数后剩余的毫秒数
+            var hours=Math.floor(day_ms/(60*60*1000))
+            //分钟数
+            var day_hour=day_ms%(60*60*1000)        //计算小时数后剩余的毫秒数
+            var minutes=Math.floor(day_hour/(60*1000))
+            //秒数
+            var day_min=day_hour%(60*1000)      //计算分钟数后剩余的毫秒数
+            var seconds=Math.round(day_min/1000)
+    	//getMonth 方法返回一个0到11之间的整数，是Date对象中的月份值，并不是现实中的月份值，要加+1才是。
+    	//开始运行时间
+    	document.getElementById("start_time").innerHTML=
+    		"开始时间："+date_start.getFullYear()+"年"
+    		+(date_start.getMonth()+1)+"月"+date_start.getDate()+"日"
+    		+date_start.getHours()+"时"+date_start.getMinutes()+"分"
+    		+date_start.getSeconds()+"秒"
+    	//运行时长
+    		document.getElementById("sum_time").innerHTML=
+    		"本次运行了"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+"秒"
+    	//现在时间	
+    		document.getElementById("now_time").innerHTML=
+    		"现在时间："+date_end.getFullYear()+"年"
+    		+(date_end.getMonth()+1)+"月"+date_end.getDate()+"日"
+    		+date_end.getHours()+"时"+date_end.getMinutes()+"分"
+    		+date_end.getSeconds()+"秒"
+    }
+    start();
+
+    </script>
+    </head>
+    <body>
+    <div style="position:absolute;left:400px;top:200px">
+    <p id="start_time"> </p>
+    <p id="now_time"> </p>
+    <p id="sum_time"> </p>
+    </div>
+    </body>
+    </html>
