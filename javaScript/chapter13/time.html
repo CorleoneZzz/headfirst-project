@@ -101,3 +101,34 @@ function getEle(name){
     </div>
     </body>
     </html>
+
+
+var date_start;
+function start() {
+date_start= new Date();
+setInterval(start,1000);
+start_time();
+}
+window.onload=start;
+function start_time()
+{
+var date_end=new Date();
+function checkFormat(num) {
+if (num < 10) {
+num = "0" + num;
+}
+return num;
+}
+var date_sum = date_end.getTime() - date_start.getTime(); //结束时间-开始时间
+//小时数
+var day_ms=date_sum%(24*60*60*1000);   //计算天数后剩余的毫秒数
+var hours=Math.floor(day_ms/(60*60*1000));
+//分钟数
+var day_hour=day_ms%(60*60*1000);        //计算小时数后剩余的毫秒数
+var minutes=Math.floor(day_hour/(60*1000));
+//秒数
+var day_min=day_hour%(60*1000);      //计算分钟数后剩余的毫秒数
+var seconds=Math.round(day_min/1000);
+var nowTime=checkFormat(hours)+":"+checkFormat(minutes)+":"+checkFormat(seconds);
+$('.blockly-workspace .title .timer').text(nowTime);
+}
