@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   var car={
+       color:"red",
+       fuel:0,
+       started:false,
+       start:function () {
+           if(this.fuel>0)
+           {
+               this.started=true;
+               console.log("油料充足，启动成功")
+           }
+            else
+           {
+               console.log("没油了，启动失败")
+           }
+       },
+       drive:function()
+       {
+           if (this.fuel===0)
+           {
+               console.log("没油了，停车吧")
+               this.stop();
+           }
+           else
+           {
+               this.fuel--;
+               console.log("耗用1L油");
+           }
+       },
+       stop:function () {
+           this.started=false;
+           console.log("停车啦")
+       },
+       addFuel:function (amount) {
+           this.fuel=this.fuel+amount;
+           console.log("加了"+amount+"L油")
+       }
+   };
+   car.addFuel(2);
+   car.start();
+   car.drive();
+   car.drive();
+   car.drive();
+   car.stop();
+</script>
+</body>
+</html>
